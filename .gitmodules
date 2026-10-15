@@ -1,0 +1,5 @@
+[submodule "ros/cobotta_catkin_ws/src/denso_cobotta_ros"]
+	path = ros/cobotta_catkin_ws/src/denso_cobotta_ros
+	url = https://github.com/DENSORobot/denso_cobotta_ros.git
+	branch = melodic-devel
+	ignore = dirty
