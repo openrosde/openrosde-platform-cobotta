@@ -19,15 +19,15 @@ The Denso COBOTTA platform consists of the following components:
 
 ## ⚙️ Platform Configuration
 
-Switch to the Denso COBOTTA platform:
+Clone this platform into `extensions/` of the core of OpenRoSDE, then switch to the Denso COBOTTA platform:
 
 ```shell
+git clone https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta.git extensions/openrosde-platform-cobotta
 bash ./SWITCH-ROBOT-PLATFORM.bash cobotta
 ```
 
 > [!NOTE]
-> The default `.env` configuration is pre-configured for the Robotis TurtleBot3 platform.
-> Run `SWITCH-ROBOT-PLATFORM.bash cobotta` to create the `.env.custom` file with the Denso COBOTTA configuration.
+> The switch creates the `.env.custom` file of the core with the Denso COBOTTA configuration of `env/cobotta.env`, then clones the Git submodules of every extension and applies their patches.
 
 ## 🌐 Network Configuration
 
@@ -36,11 +36,13 @@ No network configuration is required, as `OPENROSDE_ROBOT_HOSTNAME` is not appli
 
 ## 🚀 Gazebo Simulation
 
-Start the Denso COBOTTA Gazebo simulation using the predefined Terminator layout:
+Start the Denso COBOTTA Gazebo simulation using the `tmux` session of the platform:
 
 ```shell
-bash ./RUN-TERMINATOR-TERMINAL.bash #[docker-project] default-gazebo
+bash ./RUN-TMUX-SESSION.bash #[docker-project] default-gazebo
 ```
+
+The Terminator layout of earlier releases still opens with `bash ./RUN-TERMINATOR-TERMINAL.bash #[docker-project] default-gazebo`.
 
 Or start the launch files manually in the Docker container:
 
@@ -65,11 +67,13 @@ roslaunch openrosde_cobotta_launch cobotta_rviz_default.launch
 > The real robot bringup uses `gripper_type:=parallel` by default.
 > The parallel gripper driver is started automatically.
 
-Start the Denso COBOTTA real robot using the predefined Terminator layout:
+Start the Denso COBOTTA real robot using the `tmux` session of the platform:
 
 ```shell
-bash ./RUN-TERMINATOR-TERMINAL.bash #[docker-project] default-realworld
+bash ./RUN-TMUX-SESSION.bash #[docker-project] default-realworld
 ```
+
+The Terminator layout of earlier releases still opens with `bash ./RUN-TERMINATOR-TERMINAL.bash #[docker-project] default-realworld`.
 
 Or start the launch files manually in the Docker container:
 
@@ -105,3 +109,17 @@ Load the `COBOTTA Example Behavior` behavior in the FlexBE App and press **Start
 
 > [!CAUTION]
 > The FlexBE example behavior is **experimental** and currently has known issues in the Gazebo simulation.
+
+## 📜 Third-Party Software and Licensing
+
+This platform is distributed under the [Apache License 2.0](../../LICENSE), apart from the patches of `patches/`.
+Its Catkin workspace builds the driver of DENSO WAVE as a Git submodule, which the patches modify:
+
+| Component | Source | License |
+| --- | --- | --- |
+| `denso_cobotta_ros` | Git submodule from [https://github.com/DENSORobot/denso_cobotta_ros](https://github.com/DENSORobot/denso_cobotta_ros), branch `melodic-devel` | [GPL-2.0-or-later](https://spdx.org/licenses/GPL-2.0-or-later.html) (DENSO WAVE INCORPORATED) |
+| The four patches of `patches/ros/cobotta_catkin_ws/src/denso_cobotta_ros/` (this repository) | [https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta](https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta) | [GPL-2.0-or-later](../../LICENSES/GPL-2.0-or-later.txt), as modifications of `denso_cobotta_ros` |
+| `openrosde_cobotta_launch`, `openrosde_cobotta_behaviors` (this repository) | [https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta](https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta) | [Apache-2.0](../../LICENSE) (Coarobo GK) |
+
+> [!IMPORTANT]
+> The patches are licensed under GPL-2.0-or-later, like the files of `denso_cobotta_ros` that they modify, rather than under the Apache License 2.0 of the rest of this repository.
