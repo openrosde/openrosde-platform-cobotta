@@ -22,7 +22,7 @@ The Denso COBOTTA platform consists of the following components:
 Clone this platform into `extensions/` of the core of OpenRoSDE, then switch to the Denso COBOTTA platform:
 
 ```shell
-git clone https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta.git extensions/openrosde-platform-cobotta
+git clone https://github.com/openrosde/openrosde-platform-cobotta.git extensions/openrosde-platform-cobotta
 bash ./SWITCH-ROBOT-PLATFORM.bash cobotta
 ```
 
@@ -118,8 +118,8 @@ Its Catkin workspace builds the driver of DENSO WAVE as a Git submodule, which t
 | Component | Source | License |
 | --- | --- | --- |
 | `denso_cobotta_ros` | Git submodule from [https://github.com/DENSORobot/denso_cobotta_ros](https://github.com/DENSORobot/denso_cobotta_ros), branch `melodic-devel` | [GPL-2.0-or-later](https://spdx.org/licenses/GPL-2.0-or-later.html) (DENSO WAVE INCORPORATED) |
-| The four patches of `patches/ros/cobotta_catkin_ws/src/denso_cobotta_ros/` (this repository) | [https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta](https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta) | [GPL-2.0-or-later](../../LICENSES/GPL-2.0-or-later.txt), as modifications of `denso_cobotta_ros` |
-| `openrosde_cobotta_launch`, `openrosde_cobotta_behaviors` (this repository) | [https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta](https://gitlab.com/coarobo/openrosde/openrosde-platform-cobotta) | [Apache-2.0](../../LICENSE) (Coarobo GK) |
+| The four patches of `patches/ros/cobotta_catkin_ws/src/denso_cobotta_ros/` (this repository) | [https://github.com/openrosde/openrosde-platform-cobotta](https://github.com/openrosde/openrosde-platform-cobotta) | [GPL-2.0-or-later](../../LICENSES/GPL-2.0-or-later.txt), as modifications of `denso_cobotta_ros` |
+| `openrosde_cobotta_launch`, `openrosde_cobotta_behaviors` (this repository) | [https://github.com/openrosde/openrosde-platform-cobotta](https://github.com/openrosde/openrosde-platform-cobotta) | [Apache-2.0](../../LICENSE) (Coarobo GK) |
 
 > [!IMPORTANT]
 > The patches are licensed under GPL-2.0-or-later, like the files of `denso_cobotta_ros` that they modify, rather than under the Apache License 2.0 of the rest of this repository.
